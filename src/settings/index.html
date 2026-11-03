@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EyeRest Settings</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="theme-dark">
+  <div class="settings-shell">
+    <header class="settings-header">
+      <div class="header-icon">
+        <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="3"></circle>
+          <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+        </svg>
+      </div>
+      <div>
+        <h1 class="header-title">EyeRest Preferences</h1>
+        <p class="header-desc">Configure your 20-20-20 eye break cadence</p>
+      </div>
+    </header>
+
+    <main class="settings-content">
+      <!-- Section: Timing -->
+      <section class="settings-section">
+        <h2 class="section-title">Schedule</h2>
+        
+        <div class="field-row">
+          <div class="field-info">
+            <label for="workInterval">Work Duration</label>
+            <span class="field-hint">Time spent working between eye breaks</span>
+          </div>
+          <div class="field-control">
+            <input type="number" id="workInterval" min="1" max="180" value="20" />
+            <span class="unit">min</span>
+          </div>
+        </div>
+
+        <div class="field-row">
+          <div class="field-info">
+            <label for="breakDuration">Break Duration</label>
+            <span class="field-hint">Time spent looking at distant objects</span>
+          </div>
+          <div class="field-control">
+            <input type="number" id="breakDuration" min="5" max="300" value="20" />
+            <span class="unit">sec</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section: Experience -->
+      <section class="settings-section">
+        <h2 class="section-title">Experience & Behavior</h2>
+
+        <div class="field-row">
+          <div class="field-info">
+            <label for="soundEnabled">Chime Sound</label>
+            <span class="field-hint">Play a gentle singing bowl bell at break start and end</span>
+          </div>
+          <div class="field-control">
+            <label class="switch">
+              <input type="checkbox" id="soundEnabled" checked />
+              <span class="slider"></span>
+            </label>
+          </div>
+        </div>
+
+        <div class="field-row">
+          <div class="field-info">
+            <label for="strictMode">Strict Mode</label>
+            <span class="field-hint">Hides the skip button and disables Esc shortcut</span>
+          </div>
+          <div class="field-control">
+            <label class="switch">
+              <input type="checkbox" id="strictMode" />
+              <span class="slider"></span>
+            </label>
+          </div>
+        </div>
+
+        <div class="field-row">
+          <div class="field-info">
+            <label for="launchOnStartup">Launch on Startup</label>
+            <span class="field-hint">Automatically start EyeRest when signing in to Windows</span>
+          </div>
+          <div class="field-control">
+            <label class="switch">
+              <input type="checkbox" id="launchOnStartup" />
+              <span class="slider"></span>
+            </label>
+          </div>
+        </div>
+
+        <div class="field-row">
+          <div class="field-info">
+            <label for="themeSelect">Theme</label>
+            <span class="field-hint">Visual appearance of overlays and dialogs</span>
+          </div>
+          <div class="field-control">
+            <select id="themeSelect">
+              <option value="system">Match System</option>
+              <option value="dark">Dark Calm</option>
+              <option value="light">Light Warm</option>
+            </select>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="settings-footer">
+      <div class="footer-status" id="saveStatus">Settings saved automatically</div>
+      <button class="btn btn-close" id="btnClose">Close</button>
+    </footer>
+  </div>
+
+  <script src="settings.js"></script>
+</body>
+</html>

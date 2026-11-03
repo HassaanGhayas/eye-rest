@@ -1,0 +1,13 @@
+{
+  "name": "eyerest",
+  "version": "0.1.0",
+  "description": "Lightweight Windows eye break utility",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "tauri": "tauri"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^2.3.0"
+  }
+}

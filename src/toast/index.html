@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EyeRest Toast</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="theme-dark">
+  <div class="toast-card" id="toastCard">
+    <div class="toast-indicator">
+      <svg class="indicator-ring" viewBox="0 0 36 36">
+        <path
+          class="ring-bg"
+          d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+        />
+        <path
+          class="ring-progress"
+          id="ringProgress"
+          stroke-dasharray="100, 100"
+          d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+        />
+      </svg>
+      <span class="indicator-sec" id="secondsLeft">10</span>
+    </div>
+
+    <div class="toast-content">
+      <div class="toast-title">Eye break starting soon</div>
+      <div class="toast-desc">Prepare to look away into the distance</div>
+    </div>
+
+    <div class="toast-actions">
+      <button class="btn-text" id="btnToastSnooze" title="Snooze 5 minutes">Snooze</button>
+      <button class="btn-text" id="btnToastSkip" title="Skip this break">Skip</button>
+    </div>
+  </div>
+
+  <script src="toast.js"></script>
+</body>
+</html>

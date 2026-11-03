@@ -1,0 +1,23 @@
+# Tauri and Rust
+src-tauri/target/
+src-tauri/.cargo/
+Cargo.lock
+
+# Node / npm
+node_modules/
+.npm-cache/
+
+# Local tools, SDKs, and build caches
+.cargo_home/
+.xwin/
+.xwin-cache/
+winsdk/
+sdk_libs/
+tools/
+*.log
+
+# OS & Editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

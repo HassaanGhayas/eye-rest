@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EyeRest Overlay</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="theme-dark">
+  <div class="backdrop"></div>
+  <main class="overlay-container">
+    <div class="breathing-circle-wrapper">
+      <div class="breathing-circle"></div>
+      <div class="countdown-display" id="countdown">20</div>
+    </div>
+    
+    <h1 class="message" id="breakMessage">Look at something 20 feet away</h1>
+    <p class="submessage" id="breakSubmessage">Breathe slowly and let your eye muscles relax</p>
+
+    <div class="actions" id="actionsContainer">
+      <button class="btn btn-skip" id="btnSkip" title="Skip this break (Esc)">
+        <span>Skip</span>
+        <kbd>Esc</kbd>
+      </button>
+      <button class="btn btn-snooze" id="btnSnooze" title="Postpone for 5 minutes">
+        <span>Snooze (5m)</span>
+      </button>
+    </div>
+  </main>
+
+  <audio id="chimeAudio" preload="auto"></audio>
+  <script src="app.js"></script>
+</body>
+</html>
