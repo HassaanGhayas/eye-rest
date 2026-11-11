@@ -6,6 +6,8 @@ Cargo.lock
 # Node / npm
 node_modules/
 .npm-cache/
+.tmp/
+**/.hyperframes/
 
 # Local tools, SDKs, and build caches
 .cargo_home/

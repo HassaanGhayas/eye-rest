@@ -56,9 +56,13 @@ pub fn take_break_now(app: AppHandle, state: State<'_, AppState>) {
             };
 
             if !strict {
-                win_utils::hotkey::HotkeyManager::register_escape(hwnd);
+                win_utils::hotkey::HotkeyManager::start_escape_listener(
+                    app.clone(),
+                    std::sync::Arc::clone(&state.scheduler.state),
+                );
             }
 
+            let _ = overlay_win.show();
             let _ = overlay_win.emit(
                 "break-start",
                 serde_json::json!({

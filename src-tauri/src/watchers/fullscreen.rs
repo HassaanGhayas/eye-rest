@@ -1,5 +1,5 @@
 use windows::Win32::UI::Shell::{
-    SHQueryUserNotificationState, QUNS_BUSY, QUNS_PRESENTATION_MODE,
+    SHQueryUserNotificationState, QUNS_PRESENTATION_MODE,
     QUNS_RUNNING_D3D_FULL_SCREEN,
 };
 use windows::Win32::UI::WindowsAndMessaging::{
@@ -15,11 +15,10 @@ impl FullscreenWatcher {
     /// Detects if the user is currently running a fullscreen app, game, or presentation
     pub fn is_fullscreen_active() -> bool {
         unsafe {
-            // First check shell notification state (Direct3D fullscreen, PowerPoint presentation, etc.)
+            // Check shell notification state (Direct3D fullscreen, PowerPoint presentation)
             if let Ok(state) = SHQueryUserNotificationState() {
                 if state == QUNS_RUNNING_D3D_FULL_SCREEN
                     || state == QUNS_PRESENTATION_MODE
-                    || state == QUNS_BUSY
                 {
                     return true;
                 }

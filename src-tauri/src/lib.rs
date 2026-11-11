@@ -10,7 +10,7 @@ use chrono::Timelike;
 use config::Settings;
 use scheduler::AppScheduler;
 use state::TimerPhase;
-use tauri::{Manager, State};
+use tauri::{Emitter, Manager, State};
 
 pub struct AppState {
     pub scheduler: AppScheduler,
@@ -24,6 +24,14 @@ pub fn run() {
 
     tauri::Builder::default()
         .manage(app_state)
+        .on_window_event(|window, event| {
+            if let tauri::WindowEvent::CloseRequested { api, .. } = event {
+                if window.label() == "settings" {
+                    api.prevent_close();
+                    let _ = window.hide();
+                }
+            }
+        })
         .setup(|app| {
             let handle = app.handle();
 
@@ -71,8 +79,25 @@ pub fn run() {
                     }
                     "settings" => {
                         if let Some(settings_win) = app.get_webview_window("settings") {
+                            let _ = settings_win.unminimize();
                             let _ = settings_win.show();
                             let _ = settings_win.set_focus();
+                            let _ = settings_win.emit("refresh-settings", ());
+                        } else {
+                            if let Ok(settings_win) = tauri::WebviewWindowBuilder::new(
+                                app,
+                                "settings",
+                                tauri::WebviewUrl::App("settings/index.html".into()),
+                            )
+                            .title("EyeRest Preferences")
+                            .inner_size(480.0, 620.0)
+                            .center()
+                            .resizable(false)
+                            .build()
+                            {
+                                let _ = settings_win.show();
+                                let _ = settings_win.set_focus();
+                            }
                         }
                     }
                     "quit" => {

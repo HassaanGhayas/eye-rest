@@ -164,11 +164,12 @@ impl AppScheduler {
                                         (s.strict_mode, s.sound_enabled, s.theme.clone())
                                     };
 
-                                    // Register ephemeral Esc hotkey if not strict
+                                    // Register ephemeral Esc hotkey listener if not strict
                                     if !is_strict {
-                                        HotkeyManager::register_escape(hwnd);
+                                        HotkeyManager::start_escape_listener(app.clone(), Arc::clone(&state_arc));
                                     }
 
+                                    let _ = overlay_win.show();
                                     let _ = overlay_win.emit(
                                         "break-start",
                                         serde_json::json!({
@@ -213,11 +214,9 @@ impl AppScheduler {
     }
 
     pub fn dismiss_break_internal(app: &AppHandle, state_arc: &Arc<Mutex<StateMachine>>) {
+        HotkeyManager::stop_escape_listener();
+
         if let Some(overlay_win) = app.get_webview_window("overlay") {
-            if let Ok(hwnd_ptr) = overlay_win.hwnd() {
-                let hwnd = HWND(hwnd_ptr.0);
-                HotkeyManager::unregister_escape(hwnd);
-            }
             let _ = overlay_win.emit("break-end", ());
             let _ = overlay_win.hide();
         }

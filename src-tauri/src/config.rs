@@ -40,7 +40,13 @@ impl Settings {
     pub fn load() -> Self {
         let path = Self::config_path();
         if let Ok(content) = fs::read_to_string(&path) {
-            if let Ok(settings) = serde_json::from_str::<Settings>(&content) {
+            if let Ok(mut settings) = serde_json::from_str::<Settings>(&content) {
+                if settings.work_interval_mins == 0 {
+                    settings.work_interval_mins = 20;
+                }
+                if settings.break_duration_secs < 5 {
+                    settings.break_duration_secs = 20;
+                }
                 return settings;
             }
         }

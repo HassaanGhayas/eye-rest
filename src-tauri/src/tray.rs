@@ -1,4 +1,5 @@
 use tauri::{
+    image::Image,
     menu::{Menu, MenuItem, Submenu},
     tray::TrayIconBuilder,
     AppHandle,
@@ -38,11 +39,21 @@ pub fn create_tray(app: &AppHandle) -> Result<(), Box<dyn std::error::Error>> {
         ],
     )?;
 
-    let _tray = TrayIconBuilder::with_id("main-tray")
+    let icon = app
+        .default_window_icon()
+        .cloned()
+        .or_else(|| Image::from_app_icon_resource(32).ok());
+
+    let mut builder = TrayIconBuilder::with_id("main-tray")
         .menu(&menu)
         .show_menu_on_left_click(true)
-        .tooltip("EyeRest - 20-20-20 Eye Break Reminders")
-        .build(app)?;
+        .tooltip("EyeRest - 20-20-20 Eye Break Reminders");
+
+    if let Some(tray_icon) = icon {
+        builder = builder.icon(tray_icon);
+    }
+
+    let _tray = builder.build(app)?;
 
     Ok(())
 }

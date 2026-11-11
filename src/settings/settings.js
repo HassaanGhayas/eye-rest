@@ -97,4 +97,10 @@ btnClose.addEventListener('click', () => {
   invokeTauri('close_settings_window');
 });
 
+if (window.__TAURI__ && window.__TAURI__.event) {
+  window.__TAURI__.event.listen('refresh-settings', () => {
+    loadSettings();
+  });
+}
+
 window.addEventListener('DOMContentLoaded', loadSettings);
